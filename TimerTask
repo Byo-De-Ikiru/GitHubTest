@@ -1,0 +1,50 @@
+package com.example.timer;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import androidx.appcompat.app.AppCompatActivity;
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class testActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_test);
+
+        Button button = findViewById(R.id.button);
+        final Timer timer = new Timer();
+        final timeGetter timeGetter = new timeGetter();
+
+        timer.scheduleAtFixedRate(timeGetter,0,1000);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                timer.cancel();
+                timeGetter.cancel();
+                if (timeGetter.b == true) {
+                    timeGetter.b = false;
+                } else {
+                    timeGetter.b = true;
+                }
+                timer.scheduleAtFixedRate(timeGetter,0,1000);
+            }
+        });
+    }
+
+    protected class timeGetter extends TimerTask {
+        public boolean b = true;
+        public void run() {
+            //省略
+
+            if (b ==true) {
+                //秒なしでsetText();
+            } else {
+                //秒ありでseText();
+            }
+        }
+    }
+}

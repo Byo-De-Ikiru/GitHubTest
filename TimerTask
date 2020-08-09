@@ -43,7 +43,7 @@ public class testActivity extends AppCompatActivity {
             if (b ==true) {
                 //秒なしでsetText();
             } else {
-                //秒ありでseText();
+                //秒ありでsetText();
             }
         }
     }
